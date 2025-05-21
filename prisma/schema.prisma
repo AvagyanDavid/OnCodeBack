@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model User { 
   id Int @id @default(autoincrement())
   nickname String
   phone String
@@ -20,20 +20,21 @@ model User {
   members Member[]
 }
 
-model Friend {
+model Friend { // связи друзей 
   id Int @id @default(autoincrement())
 
-  sender User @relation("Senders", fields: [senderId], references: [id])
-  senderId Int @map("sender_id")
+  sender User @relation("Senders", fields: [senderId], references: [id]) 
+  senderId Int @map("sender_id") // id отправителя
   recipient User @relation("Recipients", fields: [recipientId], references: [id])
-  recipientId Int @map("recipient_id")
+  recipientId Int @map("recipient_id") // id получателя
 
   status Boolean
 }
 
-model Project {
+model Project { 
   id Int @id @default(autoincrement())
   name String
+  path String
 
   owner User @relation(fields: [ownerId], references: [id])
   ownerId Int @map("owner_id")
@@ -41,11 +42,16 @@ model Project {
   members Member[]
 }
 
-model Member {
+model Member { // связь между проектом и участниками
   id Int @id @default(autoincrement())
 
-  user User @relation(fields: [userId], references: [id])
-  userId Int @map("user_id")
+  user User @relation(fields: [userId], references: [id]) 
+  userId Int @map("user_id") // участник
   project Project @relation(fields: [projectId], references: [id])
-  projectId Int @map("project_id") 
+  projectId Int @map("project_id") // проект 
+}
+
+model Message {
+  id String @id @default(uuid())
+  text String
 }

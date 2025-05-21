@@ -1,44 +1,51 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma.service";
+// import { Injectable } from "@nestjs/common";
+// import { PrismaService } from "src/prisma.service";
 
-@Injectable()
-export class ProjectService {
-    constructor(private readonly prisma: PrismaService){}
+// @Injectable()
+// export class ProjectService {
+//     constructor(private readonly prisma: PrismaService){}
 
-    findAll(id: number){
-        return this.prisma.project.findMany() // доделать
-    }
+//     async findAll(id: number){
+//         return await this.prisma.project.findMany() // доделать // список всех проектов по userid
+//     }
 
-    findOne(id: number){
-        return this.prisma.project.findUnique({
-            where: {id: id}
-        })
-    }
+//     // нахождение (id)одного проекта 
+//     async findOne(id: number){
+//         return await this.prisma.project.findUnique({
+//             where: {id: id}
+//         })
+//     }
 
-    create(id: number, name: string){
-        // создание каталога проекта в рабочей директории
-        // копируешь путь к каталогу проекта
-        return this.prisma.project.create({
-            data: {
-                name: name,
-                owner: {connect: {id: id}}
-            }
-        })
-    }
+//     async create(id: number, name: string){
+//         // создание каталога проекта в рабочей директории
+//         // копируешь путь к каталогу проекта
 
-    remove(id: number){
-        return this.prisma.project.delete({
-            where: {id}
-        })
-    }
+//         // создать каталог
+//         // получаю путь
+//         // создаю запись в базе данных + путь
+//         // return await this.prisma.project.create({
+//         //     data: {
+//         //         name: name,
+//         //         owner: {connect: {id: id}}
+//         //     }
+//         // })
+//     }
 
-    update(id: number, name: string){
-        return this.prisma.project.update({
-            where: {id},
-            data: {
-                name: name
-            }
-        })
-    }
+//     // по id проекта
+//     async remove(id: number){
+//         return await this.prisma.project.delete({
+//             where: {id}
+//         })
+//     }
 
-}
+//     // по id проекта
+//     async update(id: number, name: string){
+//         return await this.prisma.project.update({
+//             where: {id},
+//             data: {
+//                 name: name
+//             }
+//         })
+//     }
+
+// }

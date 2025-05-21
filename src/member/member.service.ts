@@ -1,32 +1,37 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma.service";
+// import { Injectable } from "@nestjs/common";
+// import { PrismaService } from "src/prisma.service";
 
-@Injectable()
-export class MemberService {
-    constructor(private readonly prisma: PrismaService){}
+// @Injectable()
+// export class MemberService {
+//     constructor(private readonly prisma: PrismaService){}
 
-    findAll() {
-        return this.prisma.member.findMany()
-    }
+//     // найти всех участников проекта
+//     // async findAll(user: {id: number},project: {id: number} ) {
+//     //     return await this.prisma.member.findMany({
+//     //         where: {
+                
+//     //         }
+//     //     })
+//     // }
 
-    findOne(id:number) {
-        return this.prisma.member.findUnique({
-            where: {id: id}
-        })
-    }
+//     async findOne(id:number) {
+//         return await this.prisma.member.findUnique({
+//             where: {id: id}
+//         })
+//     }
 
-    create(userid: number, projecrid: number){
-        return this.prisma.member.create({
-            data: {
-                user: {connect: {id: userid}},
-                project: {connect: {id: projecrid }}
-            }
-        })
-    }
+//     async create(userid: number, projecrid: number){
+//         return await this.prisma.member.create({
+//             data: {
+//                 user: {connect: {id: userid}},
+//                 project: {connect: {id: projecrid }}
+//             }
+//         })
+//     }
 
-    remove(id: number) {
-        return this.prisma.member.delete({
-            where: {id}
-        })
-    }
-}
+//     async remove(id: number) {
+//         return await this.prisma.member.delete({
+//             where: {id}
+//         })
+//     }
+// }
